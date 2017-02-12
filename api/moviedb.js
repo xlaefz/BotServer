@@ -4,7 +4,7 @@ module.exports = {
     // console.log("search Term" + searchTerm);
     return new Promise(function(resolve, reject) {
       mdb.searchMovie({query: searchTerm}, (err,res)=>{
-        // console.log(res);
+        console.log(res);
         var result = res.results;
         var formattedResults = result.map(function(result){
           return {
