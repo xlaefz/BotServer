@@ -22,8 +22,8 @@ module.exports = {
             var formattedResults = modResult.map(function(result){
               return{
                 title:result.title,
-                poster_path:result.poster_path,
-                overview:result.overview
+                // poster_path:result.poster_path,
+                // overview:result.overview
               }
             });
             resolve(formattedResults);
