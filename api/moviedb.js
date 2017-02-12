@@ -3,16 +3,28 @@ module.exports = {
     const mdb = require('moviedb')('58149d99c2f26b9bc8e4a44cd1da1300');
     // console.log("search Term" + searchTerm);
     return new Promise(function(resolve, reject) {
+
+      // mdb.movieSimilar({id: 666}, function(err, res){
+      //   console.log(res);
+      //   resolve(res);
+      // });
+
       mdb.searchMovie({query: searchTerm}, (err,res)=>{
-        console.log(res);
         var result = res.results;
         var formattedResults = result.map(function(result){
           return {
-            title:result.title
+            id:result.id
           };
         });
-        console.log(formattedResults);
-        resolve(formattedResults);
+          mdb.movieSimilar({id: formattedResults[0].id}, (err,res)=>{
+            var modResult = res.results;
+            var formattedResults = modResult.map(function(result){
+              return{
+                title:result.title
+              }
+            });
+            resolve(formattedResults);
+          });
       });
     });
   }
