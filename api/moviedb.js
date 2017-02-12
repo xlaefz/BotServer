@@ -18,9 +18,12 @@ module.exports = {
         });
           mdb.movieSimilar({id: formattedResults[0].id}, (err,res)=>{
             var modResult = res.results;
+            console.log(modResult);
             var formattedResults = modResult.map(function(result){
               return{
-                title:result.title
+                title:result.title,
+                poster_path:result.poster_path,
+                overview:result.overview
               }
             });
             resolve(formattedResults);
